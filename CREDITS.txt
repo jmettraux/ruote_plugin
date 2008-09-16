@@ -1,11 +1,17 @@
 
 = CREDITS
 
-OpenWFEru is an open source Ruby workflow and BPM engine.
+Ruote (OpenWFEru) is an open source Ruby workflow and BPM engine.
+
+This plugin provides the minimum integration for Ruote inside of a Ruby on Rails application.
 
 
 == authors
 
 John Mettraux
 Tomaso Tosolini
+
+== contributors
+
+Torsten Schoenebaum (graceful shutdown with Mongrel)
 

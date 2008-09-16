@@ -1,0 +1,6 @@
+
+= ruote_plugin
+
+
+== ruote_plugin - 0.9.20    not yet released
+
