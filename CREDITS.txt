@@ -1,0 +1,11 @@
+
+= CREDITS
+
+OpenWFEru is an open source Ruby workflow and BPM engine.
+
+
+== authors
+
+John Mettraux
+Tomaso Tosolini
+
