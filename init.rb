@@ -17,27 +17,3 @@ Ruote::Plugin.engine_init(
     # the 'eval' expression is allowed
 )
 
-#
-# shutdown routine
-
-if Module.constants.include?('Mongrel') then
-  #
-  # graceful shutdown for Mongrel by Torsten Schoenebaum
-
-  class Mongrel::HttpServer
-    alias :old_graceful_shutdown :graceful_shutdown
-    def graceful_shutdown
-      Ruote::Plugin.ruote_engine.stop
-      old_graceful_shutdown
-    end
-  end
-else
-
-  at_exit do
-    #
-    # make sure to stop the workflow engine when 'densha' terminates
-
-    Ruote::Plugin.ruote_engine.stop
-  end
-end
-
