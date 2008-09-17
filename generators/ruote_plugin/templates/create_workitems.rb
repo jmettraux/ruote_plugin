@@ -39,6 +39,7 @@
 
 require 'openwfe/extras/participants/activeparticipants'
 
+
 class CreateWorkitems < OpenWFE::Extras::WorkitemTables
 
   # The migration itself is found in the 'ruote' gem.

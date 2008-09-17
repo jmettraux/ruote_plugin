@@ -1,8 +1,32 @@
 Description:
-    Generates the migrations necessary for the Ruote workflow and BPM engine
+
+  Generates the migrations necessary for the Ruote workflow and BPM engine
 
 Example:
-    ./script/generate ruote_plugin workitems
 
-    This will create:
-        a create_workitem_table migration
+  ./script/generate ruote_plugin basic
+
+    will create :
+
+      db/migrate/xxx_create_workitems.rb
+      db/migrate/xxx_create_history.rb
+
+    This is for the basic scenario, database persistence is only for workitems
+    and the engine history.
+
+
+  ./script/generate ruote_plugin all
+
+    will create
+
+      db/migrate/xxx_create_workitems.rb
+      db/migrate/xxx_create_history.rb
+
+    and
+
+      db/migrate/xxx_create_expressions.rb
+      db/migrate/xxx_create_process_errors.rb
+
+    Use this one if you want the persistence of the engine to go to
+    the database as well.
+
