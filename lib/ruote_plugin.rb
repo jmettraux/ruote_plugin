@@ -32,6 +32,7 @@
 #
 
 require 'openwfe/engine/file_persisted_engine'
+require 'openwfe/extras/engine/db_persisted_engine'
 
 
 module RuotePlugin
@@ -41,11 +42,23 @@ module RuotePlugin
   #
   def self.engine_init (application_context)
 
-    engine_class =
-      application_context.delete(:engine_class) ||
-      OpenWFE::CachedFilePersistedEngine
+    #
+    # start engine
+
+    engine_class = application_context.delete(:engine_class)
 
     @engine = engine_class.new(application_context)
+
+    #
+    # init history
+
+    @engine.init_service('history', OpenWFE::Extras::DbHistory)
+
+    #
+    # let engine reload expressions from its expool
+    # (let sleep and cron expressions, timeouts and the like get rescheduled)
+
+    @engine.reload
   end
 
   #

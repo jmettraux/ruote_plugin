@@ -4,16 +4,21 @@ require 'ruote_plugin'
 #
 # init ruote engine
 
-RuotePlugin.engine_init(
+h = {}
 
-  :engine_class => OpenWFE::Engine,
+h[:engine_class] = OpenWFE::CachedFilePersistedEngine
+#h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
+  # the type of engine to use
 
-  :work_directory => "work_#{RAILS_ENV}",
+h[:work_directory] = "work_#{RAILS_ENV}"
 
-  :ruby_eval_allowed => true,
-    # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
+h[:ruby_eval_allowed] = true
+  # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
 
-  :dynamic_eval_allowed => true
-    # the 'eval' expression is allowed
-)
+h[:dynamic_eval_allowed] = true
+  # the 'eval' expression is allowed
+
+#h[:definition_in_launchitem_allowed] = true
+
+RuotePlugin.engine_init(h)
 
