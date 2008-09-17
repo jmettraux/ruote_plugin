@@ -4,7 +4,7 @@ require 'ruote_plugin'
 #
 # init ruote engine
 
-Ruote::Plugin.engine_init(
+RuotePlugin.engine_init(
 
   :engine_class => OpenWFE::Engine,
 
@@ -13,7 +13,7 @@ Ruote::Plugin.engine_init(
   :ruby_eval_allowed => true,
     # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
 
-  :dynamic_eval_allowed => true,
+  :dynamic_eval_allowed => true
     # the 'eval' expression is allowed
 )
 

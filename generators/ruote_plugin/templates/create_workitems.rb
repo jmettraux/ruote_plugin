@@ -1,6 +1,6 @@
 #
 #--
-# Copyright (c) 2008, John Mettraux, Tomaso Tosolini OpenWFE.org
+# Copyright (c) 2007-2008, John Mettraux, OpenWFE.org
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -31,70 +31,17 @@
 #++
 #
 
-require 'openwfe/engine/file_persisted_engine'
-
-
-module RuotePlugin
-
-  #
-  # Inits the workflow engine with the given hash of options
-  #
-  def self.engine_init (application_context)
-
-    engine_class =
-      application_context.delete(:engine_class) ||
-      OpenWFE::CachedFilePersistedEngine
-
-    @engine = engine_class.new(application_context)
-  end
-
-  #
-  # Returns the workflow engine
-  #
-  def self.ruote_engine
-
-    @engine
-  end
-end
-
-
 #
-# opening the ActionController base to provide a handy 'ruote_engine' method.
-
-class ActionController::Base
-
-  def self.ruote_engine
-    RuotePlugin.ruote_engine
-  end
-
-  def ruote_engine
-    RuotePlugin.ruote_engine
-  end
-end
-
-
+# "made in Japan"
 #
-# shutdown routine, making sure the workflow engine is properly stopped
-# when the application exits.
+# John Mettraux at openwfe.org
+#
 
-if Module.constants.include?('Mongrel') then
-  #
-  # graceful shutdown for Mongrel by Torsten Schoenebaum
+require 'openwfe/extras/participants/activeparticipants'
 
-  class Mongrel::HttpServer
-    alias :old_graceful_shutdown :graceful_shutdown
-    def graceful_shutdown
-      RuotePlugin.ruote_engine.stop
-      old_graceful_shutdown
-    end
-  end
-else
+class CreateWorkitems < OpenWFE::Extras::WorkitemTables
 
-  at_exit do
-    #
-    # make sure to stop the workflow engine when 'densha' terminates
-
-    RuotePlugin.ruote_engine.stop
-  end
+  # The migration itself is found in the 'ruote' gem.
+  # Extending it to make it happen.
 end
 
