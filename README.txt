@@ -4,7 +4,15 @@
 
 == Overview
 
-Minimal integration of Ruote into a RubyOnRails application
+Minimal integration of Ruote into a Ruby on Rails application
+
+Once installed, the plugin will add a ruote_engine method to your controllers so that you get access to workflow engine quite easily.
+
+You can also access the engine directly via 
+
+  RuotePlugin.ruote_engine
+
+Note that the plugin also adds a shutdown hook to your application to make sure the workflow engine gets stopped in a clean way.
 
 
 == Usage
