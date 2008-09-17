@@ -3,6 +3,8 @@
 # opening the Base to make sure we have sequential migration numbers
 # even when generating multiples migrations.
 #
+# see http://rails.lighthouseapp.com/projects/8994/tickets/487-migration-timestamp-clash-problems-with-generators
+#
 class Rails::Generator::Commands::Base
 
   def next_migration_string(padding = 3)
