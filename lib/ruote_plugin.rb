@@ -63,6 +63,14 @@ module RuotePlugin
   end
 
   #
+  # Stops the workflow engine (if one was started)
+  #
+  def self.engine_stop
+
+    @engine && @engine.stop
+  end
+
+  #
   # Returns the workflow engine
   #
   def self.ruote_engine
@@ -98,7 +106,7 @@ if Module.constants.include?('Mongrel') then
   class Mongrel::HttpServer
     alias :old_graceful_shutdown :graceful_shutdown
     def graceful_shutdown
-      RuotePlugin.ruote_engine.stop
+      RuotePlugin.engine_stop if RuotePlugin.ruote_engine
       old_graceful_shutdown
     end
   end
@@ -108,7 +116,7 @@ else
     #
     # make sure to stop the workflow engine when 'densha' terminates
 
-    RuotePlugin.ruote_engine.stop
+    RuotePlugin.engine_stop
   end
 end
 
