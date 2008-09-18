@@ -20,5 +20,7 @@ h[:dynamic_eval_allowed] = true
 
 #h[:definition_in_launchitem_allowed] = true
 
-RuotePlugin.engine_init(h)
+RuotePlugin.engine_init(h) \
+  unless $0.match(/script\/generate$/)
+    # don't start engine while using the generator
 
