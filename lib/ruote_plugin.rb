@@ -35,8 +35,6 @@ require 'openwfe/engine/file_persisted_engine'
 require 'openwfe/extras/engine/db_persisted_engine'
 require 'openwfe/extras/expool/dbhistory'
 
-require 'misc'
-
 
 module RuotePlugin
 
