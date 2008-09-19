@@ -31,7 +31,7 @@
 #++
 #
 
-class ActionController::AbstractRequest
+module RuotePlugin
 
   #
   # A small method for returning full URIs about resources
@@ -39,8 +39,10 @@ class ActionController::AbstractRequest
   #   request._href(:expressions, '2004-tudozu', '0_2_3')
   #     #=> "http://host.example.com:3000/expressions/2004-tudozu/0_2_3"
   #
-  def _href (*args)
-    "#{protocol}#{host_with_port}/#{args.join('/')}"
+  def self.href_method (request)
+    lambda do |*args|
+      "#{request.protocol}#{request.host_with_port}/#{args.join('/')}"
+    end
   end
 end
 
