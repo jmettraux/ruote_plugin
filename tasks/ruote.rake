@@ -5,7 +5,7 @@
 #   rake ruote:install
 #
 # will grab all the Ruote source code (with Rufus dependencies) and place
-# it under vendor/ruote/ and vendor/rufus/
+# it under vendor/ruote_plugin/lib
 #
 #   rake ruote:gem_install
 #
@@ -21,14 +21,16 @@ namespace :ruote do
     dollar eval lru mnemo scheduler verbs treechecker
   }.collect { |e| "rufus-#{e}" }
 
+  RUOTE_PLUGIN_LIB = File.dirname(__FILE__) + '/../lib'
+
   #
   # do use either :install_workflow_engine either :install_dependency_gems
   # but not both
   #
 
   desc(
-    "Installs under vendor/ the latest source of Ruote (OpenWFEru) "+
-    "(and required subprojects).")
+    "Installs under vendor/ruote_plugin/lib the latest source of Ruote " +
+    "(OpenWFEru) (and required subprojects).")
   task :install => :get_from_github do
 
     sh 'sudo gem install --no-rdoc --no-ri rogue_parser'
@@ -39,12 +41,15 @@ namespace :ruote do
 
     mkdir 'tmp' unless File.exists?('tmp')
 
-    rm_r 'vendor/openwfe' if File.exists?('vendor/openwfe')
-    rm_r 'vendor/rufus' if File.exists?('vendor/rufus')
-    mkdir 'vendor' unless File.exists?('vendor')
+    rm_fr "#{RUOTE_PLUGIN_LIB}/openwfe"
+    rm_fr "#{RUOTE_PLUGIN_LIB}/rufus*"
 
     RUFUSES.each { |e| git_clone(e) }
     git_clone 'ruote'
+  end
+
+  def rm_fr (dir_or_file)
+    rm_r(dir_or_file) if File.exists?(dir_or_file)
   end
 
   def git_clone (elt)
@@ -52,7 +57,7 @@ namespace :ruote do
     chdir 'tmp' do
       sh "git clone git://github.com/jmettraux/#{elt}.git"
     end
-    cp_r "tmp/#{elt}/lib/.", 'vendor/'
+    cp_r "tmp/#{elt}/lib/.", "#{RUOTE_PLUGIN_LIB}/"
     rm_r "tmp/#{elt}"
   end
 
