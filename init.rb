@@ -31,6 +31,8 @@
 #++
 #
 
+$: << File.dirname(__FILE__) + '/lib_ruote'
+
 require 'ruote_plugin'
 
 #

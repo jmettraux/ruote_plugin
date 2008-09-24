@@ -21,7 +21,7 @@ namespace :ruote do
     dollar eval lru mnemo scheduler verbs treechecker
   }.collect { |e| "rufus-#{e}" }
 
-  RUOTE_PLUGIN_LIB = File.dirname(__FILE__) + '/../lib'
+  RUOTE_PLUGIN_LIB = File.dirname(__FILE__) + '/../lib_ruote'
 
   #
   # do use either :install_workflow_engine either :install_dependency_gems
@@ -41,8 +41,8 @@ namespace :ruote do
 
     mkdir 'tmp' unless File.exists?('tmp')
 
-    rm_fr "#{RUOTE_PLUGIN_LIB}/openwfe"
-    rm_fr "#{RUOTE_PLUGIN_LIB}/rufus*"
+    rm_fr RUOTE_PLUGIN_LIB
+    mkdir RUOTE_PLUGIN_LIB
 
     RUFUSES.each { |e| git_clone(e) }
     git_clone 'ruote'

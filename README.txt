@@ -59,7 +59,7 @@ The migrations will be found under db/migrate/ as should be.
 
 === install Ruote and its dependencies
 
-The plugin comes with 2 rake tasks for installing the workflow engine itself, either inside of vendor/ruote/ (and vendor/rufus/) with all its dependencies, either as a gem (plus gem dependencies).
+The plugin comes with 2 rake tasks for installing the workflow engine itself, either inside of vendor/plugins/ruote_plugin/lib_ruote with all its dependencies, either as a gem (plus gem dependencies).
 
   rake ruote:install
 

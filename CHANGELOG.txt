@@ -4,8 +4,8 @@
 
 == ruote_plugin - 0.9.20    not yet released
 
+- todo  #22153 : rake ruote:install places ruote libs and dependencies
+                 under vendor/plugsin/ruote_plugin/lib_ruote
 - todo  #22140 : added rake ruote:fetch_fluo to fetch the latest ruote-fluo
-                 javascripts and place them under public/javascripts
-- todo  #22142 : let rake ruote:install place the ruote source under
                  vendor/ruote_plugin/lib instead of vendor/
 
