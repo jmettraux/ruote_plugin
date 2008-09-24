@@ -61,7 +61,8 @@ namespace :ruote do
     rm_r "tmp/#{elt}"
   end
 
-  desc "Installes the Ruote (OpenWFEru) gems and there dependencies"
+  desc(
+    "Installs the Ruote (OpenWFEru) gems and there dependencies")
   task :gem_install do
 
     GEMS = RUFUSES.dup
@@ -74,6 +75,23 @@ namespace :ruote do
     puts
     puts "installed gems  #{GEMS.join(' ')}"
     puts
+  end
+
+  desc(
+    "Fetches the latest ruote-fluo .js scripts from http://github.com " +
+    "and places them in public/javascripts")
+  task :fetch_fluo do
+
+    require 'open-uri'
+
+    branch = 'master'
+
+    %w{ fluo-can.js fluo-json.js fluo-tred.js }.each do |script|
+      open("http://github.com/jmettraux/ruote-fluo/tree/#{branch}/public/js/#{script}?raw=true") do |r|
+        File.open("public/javascripts/#{script}", 'w') { |f| f.write(r.read) }
+        puts ".. wrote public/javascripts/#{script}"
+      end
+    end
   end
 end
 
