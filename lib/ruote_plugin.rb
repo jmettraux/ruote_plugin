@@ -60,6 +60,8 @@ module RuotePlugin
     # (let sleep and cron expressions, timeouts and the like get rescheduled)
 
     @engine.reload
+
+    puts '.. Ruote workflow/BPM engine started (ruote_plugin)'
   end
 
   #
@@ -116,7 +118,7 @@ else
     #
     # make sure to stop the workflow engine when 'densha' terminates
 
-    RuotePlugin.engine_stop
+    RuotePlugin.engine_stop if RuotePlugin.ruote_engine
   end
 end
 
