@@ -35,6 +35,7 @@ $: << File.dirname(__FILE__) + '/lib_ruote'
 
 require 'ruote_plugin'
 
+
 #
 # init ruote engine
 
@@ -61,6 +62,5 @@ h[:definition_in_launchitem_allowed] = true
   # launchitems (process_items) may contain process definitions
 
 RuotePlugin.engine_init(h) \
-  if caller.find { |l| l.match(/\/commands\/server/) } or $0 == 'irb'
-    # don't start engine unless it's a server start
+  unless caller.find { |l| l.match(/rake\.rb/) }
 
