@@ -63,4 +63,7 @@ h[:definition_in_launchitem_allowed] = true
 
 RuotePlugin.engine_init(h) \
   unless caller.find { |l| l.match(/rake\.rb/) }
+    #
+    # makes sure the engine is not called in case of "rake db:migrate"
+    # lets the engine start for "rake test" anyway
 
