@@ -61,9 +61,11 @@ h[:dynamic_eval_allowed] = true
 h[:definition_in_launchitem_allowed] = true
   # launchitems (process_items) may contain process definitions
 
+
 RuotePlugin.engine_init(h) \
-  unless caller.find { |l| l.match(/rake\.rb/) }
+  unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
     #
     # makes sure the engine is not called in case of "rake db:migrate"
+    # or 'script/generate'
     # lets the engine start for "rake test" anyway
 
