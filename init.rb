@@ -69,3 +69,10 @@ RuotePlugin.engine_init(h) \
     # or 'script/generate'
     # lets the engine start for "rake test" anyway
 
+begin
+  require 'lib/ruote.rb'
+  puts ".. found lib/ruote.rb"
+rescue LoadError
+  puts ".. did not find any lib/ruote.rb, skipping"
+end
+

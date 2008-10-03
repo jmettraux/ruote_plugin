@@ -4,6 +4,7 @@
 
 == ruote_plugin - 0.9.20    not yet released
 
+- todo  #22281 : plugin now loads RAILS_ROOT/lib/ruote.rb if present
 - todo  #22153 : rake ruote:install places ruote libs and dependencies
                  under vendor/plugsin/ruote_plugin/lib_ruote
 - todo  #22140 : added rake ruote:fetch_fluo to fetch the latest ruote-fluo
