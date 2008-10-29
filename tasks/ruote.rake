@@ -13,7 +13,7 @@
 # install the latest Ruote (and Rufus) gems.
 #
 # Note that rake ruote:install will nevertheless install atom-tools and
-# rogue_parser as gems.
+# ruby_parser as gems.
 #
 namespace :ruote do
 
@@ -33,7 +33,7 @@ namespace :ruote do
     "(OpenWFEru) (and required subprojects).")
   task :install => :get_from_github do
 
-    sh 'sudo gem install --no-rdoc --no-ri rogue_parser'
+    sh 'sudo gem install --no-rdoc --no-ri ruby_parser'
     sh 'sudo gem install --no-rdoc --no-ri atom-tools'
   end
 
