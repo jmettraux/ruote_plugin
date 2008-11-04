@@ -47,8 +47,9 @@ h[:engine_class] = OpenWFE::CachedFilePersistedEngine
 #h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
   # the type of engine to use
 
-h[:logger] = Logger.new "log/openwferu_#{RAILS_ENV}.log", 10, 1024000
-h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
+h[:logger] = Logger.new "log/ruote_#{RAILS_ENV}.log", 10, 1024000
+#h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
+h[:logger].level = Logger::INFO
 
 h[:work_directory] = "work_#{RAILS_ENV}"
 
