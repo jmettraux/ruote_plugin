@@ -18,7 +18,7 @@
 namespace :ruote do
 
   RUFUSES = %w{
-    dollar eval lru mnemo scheduler verbs treechecker
+    dollar lru mnemo scheduler verbs treechecker
   }.collect { |e| "rufus-#{e}" }
 
   RUOTE_PLUGIN_LIB = File.dirname(__FILE__) + '/../lib_ruote'

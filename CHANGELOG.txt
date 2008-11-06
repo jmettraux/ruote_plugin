@@ -1,9 +1,9 @@
 
 = ruote_plugin
 
-
 == ruote_plugin - 0.9.20    not yet released
 
+- bug   #22693 : removed rufus-eval from ruote.rake. Thanks to GHZ
 - todo  #22281 : plugin now loads RAILS_ROOT/lib/ruote.rb if present
 - todo  #22153 : rake ruote:install places ruote libs and dependencies
                  under vendor/plugsin/ruote_plugin/lib_ruote
