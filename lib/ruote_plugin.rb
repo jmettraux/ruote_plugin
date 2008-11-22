@@ -103,7 +103,7 @@ end
 #
 class LinkGenerator < OpenWFE::PlainLinkGenerator
 
-  def @initialize (request)
+  def initialize (request)
     @request = request
   end
 
