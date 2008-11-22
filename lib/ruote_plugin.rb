@@ -31,6 +31,7 @@
 #++
 #
 
+require 'openwfe/representations'
 require 'openwfe/engine/file_persisted_engine'
 require 'openwfe/extras/engine/db_persisted_engine'
 require 'openwfe/extras/expool/dbhistory'
@@ -94,6 +95,26 @@ class ActionController::Base
   def ruote_engine
     RuotePlugin.ruote_engine
   end
+end
+
+#
+# A Rails specialization of the representations.rb PlainLinkGenerator,
+# generates absolute links.
+#
+class LinkGenerator < OpenWFE::PlainLinkGenerator
+
+  def @initialize (request)
+    @request = request
+  end
+
+  protected
+
+    def link (rel, res, id=nil)
+
+      href, rel = super
+
+      [ "#{@request.protocol}#{@request.host}:#{@request.port}#{href}", rel ]
+    end
 end
 
 
