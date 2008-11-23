@@ -103,7 +103,7 @@ end
 #
 class LinkGenerator < OpenWFE::PlainLinkGenerator
 
-  def initialize (request)
+  def initialize (request=nil)
     @request = request
   end
 
@@ -113,7 +113,11 @@ class LinkGenerator < OpenWFE::PlainLinkGenerator
 
       href, rel = super
 
-      [ "#{@request.protocol}#{@request.host}:#{@request.port}#{href}", rel ]
+      if @request
+        [ "#{@request.protocol}#{@request.host}:#{@request.port}#{href}", rel ]
+      else
+        [ href, rel ]
+      end
     end
 end
 
