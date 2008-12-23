@@ -3,6 +3,7 @@
 
 == ruote_plugin - 0.9.20    not yet released
 
+- todo  #23314 : made sure engine params can be overriden via RUOTE_ENV
 - todo  #22935 : implemented LinkGenerator
 - bug   #22693 : removed rufus-eval from ruote.rake. Thanks to GHZ
 - todo  #22281 : plugin now loads RAILS_ROOT/lib/ruote.rb if present

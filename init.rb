@@ -39,27 +39,27 @@ require 'ruote_plugin'
 #
 # init ruote engine
 
-# TODO : add a way to pass [overriding] params here
+h = RUOTE_ENV || {}
 
-h = {}
-
-h[:engine_class] = OpenWFE::CachedFilePersistedEngine
+h[:engine_class] ||= OpenWFE::CachedFilePersistedEngine
 #h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
   # the type of engine to use
 
-h[:logger] = Logger.new "log/ruote_#{RAILS_ENV}.log", 10, 1024000
-#h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
-h[:logger].level = Logger::INFO
+unless h[:logger]
+  h[:logger] = Logger.new("log/ruote_#{RAILS_ENV}.log", 10, 1024000)
+  #h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
+  h[:logger].level = Logger::INFO
+end
 
-h[:work_directory] = "work_#{RAILS_ENV}"
+h[:work_directory] ||= "work_#{RAILS_ENV}"
 
-h[:ruby_eval_allowed] = true
+h[:ruby_eval_allowed] ||= true
   # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
 
-h[:dynamic_eval_allowed] = true
+h[:dynamic_eval_allowed] ||= true
   # the 'eval' expression is allowed
 
-h[:definition_in_launchitem_allowed] = true
+h[:definition_in_launchitem_allowed] ||= true
   # launchitems (process_items) may contain process definitions
 
 
@@ -72,8 +72,8 @@ RuotePlugin.engine_init(h) \
 
 begin
   require 'lib/ruote.rb'
-  puts ".. found lib/ruote.rb"
+  puts '.. found lib/ruote.rb'
 rescue LoadError
-  puts ".. did not find any lib/ruote.rb, skipping"
+  puts '.. did not find any lib/ruote.rb, skipping'
 end
 
