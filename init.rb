@@ -39,7 +39,7 @@ require 'ruote_plugin'
 #
 # init ruote engine
 
-h = RUOTE_ENV || {}
+h = defined?(RUOTE_ENV) ? RUOTE_ENV : {}
 
 h[:engine_class] ||= OpenWFE::CachedFilePersistedEngine
 #h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
