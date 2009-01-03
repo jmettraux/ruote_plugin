@@ -1,6 +1,6 @@
 #
 #--
-# Copyright (c) 2008, John Mettraux, Tomaso Tosolini OpenWFE.org
+# Copyright (c) 2008-2009, John Mettraux, Tomaso Tosolini OpenWFE.org
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@ module RuotePlugin
     #
     # init history
 
-    @engine.init_service('history', OpenWFE::Extras::DbHistory)
+    @engine.init_service('history', OpenWFE::Extras::QueuedDbHistory)
 
     #
     # let engine reload expressions from its expool
