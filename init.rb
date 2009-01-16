@@ -31,49 +31,53 @@
 #++
 #
 
-$: << File.dirname(__FILE__) + '/lib_ruote'
-
-require 'ruote_plugin'
-
-
-#
-# init ruote engine
-
-h = defined?(RUOTE_ENV) ? RUOTE_ENV : {}
-
-h[:engine_class] ||= OpenWFE::CachedFilePersistedEngine
-#h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
-  # the type of engine to use
-
-unless h[:logger]
-  h[:logger] = Logger.new("log/ruote_#{RAILS_ENV}.log", 10, 1024000)
-  #h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
-  h[:logger].level = Logger::INFO
-end
-
-h[:work_directory] ||= "work_#{RAILS_ENV}"
-
-h[:ruby_eval_allowed] ||= true
-  # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
-
-h[:dynamic_eval_allowed] ||= true
-  # the 'eval' expression is allowed
-
-h[:definition_in_launchitem_allowed] ||= true
-  # launchitems (process_items) may contain process definitions
+unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
+  #
+  # makes sure the engine is not instantied in case of "rake db:migrate"
+  # or 'script/generate'
+  # lets the engine start for "rake test" anyway
 
 
-RuotePlugin.engine_init(h) \
-  unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
-    #
-    # makes sure the engine is not called in case of "rake db:migrate"
-    # or 'script/generate'
-    # lets the engine start for "rake test" anyway
+  $: << File.dirname(__FILE__) + '/lib_ruote'
 
-begin
-  require 'lib/ruote.rb'
-  puts '.. found lib/ruote.rb'
-rescue LoadError
-  puts '.. did not find any lib/ruote.rb, skipping'
+  require 'ruote_plugin'
+
+
+  #
+  # init ruote engine
+
+  h = defined?(RUOTE_ENV) ? RUOTE_ENV : {}
+
+  h[:engine_class] ||= OpenWFE::CachedFilePersistedEngine
+  #h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
+    # the type of engine to use
+
+  unless h[:logger]
+    h[:logger] = Logger.new("log/ruote_#{RAILS_ENV}.log", 10, 1024000)
+    #h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
+    h[:logger].level = Logger::INFO
+  end
+
+  h[:work_directory] ||= "work_#{RAILS_ENV}"
+
+  h[:ruby_eval_allowed] ||= true
+    # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
+
+  h[:dynamic_eval_allowed] ||= true
+    # the 'eval' expression is allowed
+
+  h[:definition_in_launchitem_allowed] ||= true
+    # launchitems (process_items) may contain process definitions
+
+
+  RuotePlugin.engine_init(h)
+
+  begin
+    require 'lib/ruote.rb'
+    puts '.. found lib/ruote.rb'
+  rescue LoadError
+    puts '.. did not find any lib/ruote.rb, skipping'
+  end
+
 end
 
