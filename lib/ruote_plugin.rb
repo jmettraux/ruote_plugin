@@ -34,6 +34,7 @@
 require 'openwfe/representations'
 require 'openwfe/engine/file_persisted_engine'
 require 'openwfe/extras/engine/db_persisted_engine'
+require 'openwfe/extras/expool/db_errorjournal'
 require 'openwfe/extras/expool/db_history'
 
 
@@ -54,13 +55,21 @@ module RuotePlugin
     #
     # init history
 
-    @engine.init_service('history', OpenWFE::Extras::QueuedDbHistory)
+    @engine.init_service(:s_history, OpenWFE::Extras::QueuedDbHistory)
+
+    #
+    # init error journal
+
+    @engine.init_service(:s_error_journal, OpenWFE::Extras::DbErrorJournal)
 
     #
     # let engine reload expressions from its expool
     # (let sleep and cron expressions, timeouts and the like get rescheduled)
-
-    @engine.reload
+    #
+    # NO : this must be done by the app itself, once all the participants
+    #      have been registered.
+    #
+    #@engine.reload
 
     puts '.. Ruote workflow/BPM engine started (ruote_plugin)'
   end
