@@ -13,6 +13,10 @@ Tomaso Tosolini
 
 == contributors
 
-Geraint GHZ (getting rid of rufus-eval)
 Torsten Schoenebaum (graceful shutdown with Mongrel)
+Geraint GHZ (getting rid of rufus-eval)
+
+== feedback
+
+Alia K. (QA)
 

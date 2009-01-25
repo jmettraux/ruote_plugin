@@ -31,14 +31,15 @@
 #++
 #
 
+$: << File.dirname(__FILE__) + '/lib_ruote'
+  # putting the engine in the load path anyway (migrations do need it)
+
+
 unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
   #
   # makes sure the engine is not instantied in case of "rake db:migrate"
   # or 'script/generate'
   # lets the engine start for "rake test" anyway
-
-
-  $: << File.dirname(__FILE__) + '/lib_ruote'
 
   require 'ruote_plugin'
 
