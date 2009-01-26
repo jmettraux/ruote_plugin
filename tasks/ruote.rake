@@ -17,10 +17,6 @@
 #
 namespace :ruote do
 
-  RUFUSES = %w{
-    dollar lru mnemo scheduler verbs treechecker
-  }.collect { |e| "rufus-#{e}" }
-
   RUOTE_PLUGIN_LIB = File.dirname(__FILE__) + '/../lib_ruote'
 
   #
@@ -30,21 +26,11 @@ namespace :ruote do
 
   desc(
     "Installs under vendor/ruote_plugin/lib the latest source of Ruote " +
-    "(OpenWFEru) (and required subprojects).")
-  task :install => :get_from_github do
-
-    sh 'sudo gem install --no-rdoc --no-ri ruby_parser'
-    sh 'sudo gem install --no-rdoc --no-ri atom-tools'
-  end
-
-  task :get_from_github do
-
+    "(OpenWFEru).")
+  task :install
     mkdir 'tmp' unless File.exists?('tmp')
-
     rm_fr RUOTE_PLUGIN_LIB
     mkdir RUOTE_PLUGIN_LIB
-
-    RUFUSES.each { |e| git_clone(e) }
     git_clone 'ruote'
   end
 
@@ -59,22 +45,6 @@ namespace :ruote do
     end
     cp_r "tmp/#{elt}/lib/.", "#{RUOTE_PLUGIN_LIB}/"
     rm_r "tmp/#{elt}"
-  end
-
-  desc(
-    "Installs the Ruote (OpenWFEru) gems and there dependencies")
-  task :gem_install do
-
-    GEMS = RUFUSES.dup
-
-    GEMS << 'ruote'
-    GEMS << 'atom-tools'
-
-    sh "sudo gem install --no-rdoc --no-ri #{GEMS.join(' ')}"
-
-    puts
-    puts "installed gems  #{GEMS.join(' ')}"
-    puts
   end
 
   desc(

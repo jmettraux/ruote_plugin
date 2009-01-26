@@ -34,6 +34,20 @@
 $: << File.dirname(__FILE__) + '/lib_ruote'
   # putting the engine in the load path anyway (migrations do need it)
 
+#
+# adding required gems to the Rails configuration
+
+Rails.configuration.gem 'atom-tools'
+Rails.configuration.gem 'rufus-dollar'
+Rails.configuration.gem 'rufus-lru'
+Rails.configuration.gem 'rufus-mnemo'
+Rails.configuration.gem 'rufus-scheduler'
+Rails.configuration.gem 'rufus-verbs'
+Rails.configuration.gem 'rufus-treechecker'
+
+
+#
+# starting the ruote engine (if necessary)
 
 unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
   #

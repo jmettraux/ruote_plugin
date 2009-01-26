@@ -3,6 +3,7 @@
 
 == ruote_plugin - 0.9.20    not yet released
 
+- todo  #23697 : using rake gems:install for rufus gems from now on
 - todo  #23616 : switched to db_errorjournal
 - todo  #23600 : adapted to file renaming in ruote itself
 - todo  #23314 : made sure engine params can be overriden via RUOTE_ENV
