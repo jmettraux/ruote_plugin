@@ -38,12 +38,12 @@ $: << File.dirname(__FILE__) + '/lib_ruote'
 # adding required gems to the Rails configuration
 
 Rails.configuration.gem 'atom-tools'
-Rails.configuration.gem 'rufus-dollar'
-Rails.configuration.gem 'rufus-lru'
-Rails.configuration.gem 'rufus-mnemo'
+Rails.configuration.gem 'rufus-dollar', :lib => 'rufus/dollar'
+Rails.configuration.gem 'rufus-lru', :lib => 'rufus/lru'
+Rails.configuration.gem 'rufus-mnemo', :lib => 'rufus/mnemo'
 Rails.configuration.gem 'rufus-scheduler'
-Rails.configuration.gem 'rufus-verbs'
 Rails.configuration.gem 'rufus-treechecker'
+Rails.configuration.gem 'rufus-verbs', :lib => 'rufus/verbs'
 
 
 #
