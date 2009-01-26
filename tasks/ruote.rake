@@ -27,7 +27,7 @@ namespace :ruote do
   desc(
     "Installs under vendor/ruote_plugin/lib the latest source of Ruote " +
     "(OpenWFEru).")
-  task :install
+  task :install do
     mkdir 'tmp' unless File.exists?('tmp')
     rm_fr RUOTE_PLUGIN_LIB
     mkdir RUOTE_PLUGIN_LIB
