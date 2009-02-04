@@ -63,7 +63,7 @@ unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
 
   h = defined?(RUOTE_ENV) ? RUOTE_ENV : {}
 
-  h[:engine_class] ||= OpenWFE::CachedFilePersistedEngine
+  h[:engine_class] ||= OpenWFE::FsPersistedEngine
   #h[:engine_class] = OpenWFE::Extras::DbPersistedEngine
     # the type of engine to use
 

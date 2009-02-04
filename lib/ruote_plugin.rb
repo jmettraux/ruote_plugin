@@ -32,7 +32,7 @@
 #
 
 require 'openwfe/representations'
-require 'openwfe/engine/file_persisted_engine'
+require 'openwfe/engine/fs_engine'
 require 'openwfe/extras/engine/db_persisted_engine'
 require 'openwfe/extras/expool/db_errorjournal'
 require 'openwfe/extras/expool/db_history'
