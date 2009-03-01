@@ -2,6 +2,9 @@
 = ruote_plugin
 
 
+WARNING : ruote, as a workflow engine, currently relies heavily on threading. So a multiprocess deployment target is not OK. Passenger is not OK either.
+
+
 == Overview
 
 Minimal integration of Ruote into a Ruby on Rails application
