@@ -23,10 +23,12 @@
 #++
 
 
-require 'openwfe/extras/participants/active_participants'
+#require 'openwfe/extras/participants/active_participants'
+require 'openwfe/extras/participants/ar_participants'
 
 
-class CreateWorkitems < OpenWFE::Extras::WorkitemTables
+#class CreateWorkitems < OpenWFE::Extras::WorkitemTables
+class CreateWorkitems < OpenWFE::Extras::ArWorkitemTables
 
   # The migration itself is found in the 'ruote' gem.
   # Extending it to make it happen.
