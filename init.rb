@@ -60,12 +60,11 @@ unless caller.find { |l| l.match(/rake\.rb/) or l.match(/generate\.rb/) }
     # the type of engine to use
 
   unless h[:logger]
-    h[:logger] = Logger.new("log/ruote_#{RAILS_ENV}.log", 10, 1024000)
-    #h[:logger].level = (RAILS_ENV == 'production') ? Logger::INFO : Logger::DEBUG
-    h[:logger].level = Logger::INFO
+    h[:logger] = ActiveSupport::BufferedLogger.new("#{RAILS_ROOT}/log/ruote_#{RAILS_ENV}.log")
+    h[:logger].level = ActiveSupport::BufferedLogger::INFO if Rails.env.production?
   end
 
-  h[:work_directory] ||= "work_#{RAILS_ENV}"
+  h[:work_directory] ||= "#{RAILS_ROOT}/work_#{RAILS_ENV}"
 
   h[:ruby_eval_allowed] ||= true
     # the 'reval' expression and the ${r:some_ruby_code} notation are allowed
