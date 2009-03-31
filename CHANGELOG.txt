@@ -1,8 +1,9 @@
 
 = ruote_plugin
 
-== ruote_plugin - 0.9.20    not yet released
+== ruote_plugin - 0.9.21    not yet released
 
+- patch #25049 : RAILS_ROOT issue for logs/ and work/ 高志鑫 + Kenneth
 - todo  #23697 : using rake gems:install for rufus gems from now on
 - todo  #23616 : switched to db_errorjournal
 - todo  #23600 : adapted to file renaming in ruote itself
