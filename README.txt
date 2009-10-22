@@ -1,6 +1,7 @@
 
 = ruote_plugin
 
+WARNING : since this sub-project is ruote 0.9.x based, work has ceased here for now. see http://github.com/jmettraux/ruote-http and http://github.com/kennethkalmer/ruote-kit
 
 WARNING : ruote, as a workflow engine, currently relies heavily on threading. So a multiprocess deployment target is not OK. Passenger is not OK either.
 
